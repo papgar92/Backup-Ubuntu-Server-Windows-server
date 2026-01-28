@@ -22,39 +22,34 @@ Script **Bash listo para produccion** :
 # Pre-requisitos (CIFS Obligatorio)
 
 ### 1. Instalar y configurar Cliente CIFS
-
+```bash
 sudo apt update && sudo apt install cifs-utils -y
+sudo cp fstab.example /etc/fstab.backup  # Backup plantilla
 sudo nano /etc/fstab
-## Añadir al final 
-# Carpeta de red destino Windows Server
 //IP_DESTINO/Carpeta\\040de\\040Destino/Backups\\040desde\\040Ubuntu /mnt/copias_seguridad cifs credentials=/etc/samba/credenciales_backup,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm 0 0
 
-### 2. Credenciales SMB
+sudo mkdir -p /etc/samba
 sudo cp credentials.example /etc/samba/credenciales_backup
-sudo nano /etc/samba/credenciales_backup  # Editamos REAL
+sudo nano /etc/samba/credenciales_backup  # Edita con datos REALES
 sudo chmod 600 /etc/samba/credenciales_backup
 
-## contenido
 username=DOMAIN\usuario
 password=TuContraseña
 domain=DominioLocal
 
-
-### 3. Probar montaje
 sudo mkdir -p /mnt/copias_seguridad
 sudo mount -a
-mount | grep copias_seguridad 
+mount | grep copias_seguridad  # Muestra CIFS montado
+df -h /mnt/copias_seguridad    # Ver espacio en Windows
 
-# Instalacion. 
-
-### 4. Instalacion
+# Clonar repo y hacer ejecutable
 git clone https://github.com/papgar92/Backup-Ubuntu-Server-Windows-server
 cd Backup-Ubuntu-Server-Windows-server
+
 chmod +x backup.sh
 
 
-# Guardar Logs
-echo "$(date '+%Y-%m-%d %H:%M:%S') - Reemplazado: $NOMBRE_NUEVO" >> /home/xrdpuser/log_copia_sensdesk.txt
+sudo crontab -e
 
-echo "Backup actualizado: $NOMBRE_NUEVO (anterior eliminado)"
+
 
