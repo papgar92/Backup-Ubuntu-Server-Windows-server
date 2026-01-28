@@ -26,7 +26,7 @@ Script **Bash listo para produccion** :
 sudo apt update && sudo apt install cifs-utils -y
 sudo nano /etc/fstab
 ## Añadir al final 
-# Carpeta de red Wn Windows Server
+# Carpeta de red destino Windows Server
 //IP_DESTINO/Carpeta\\040de\\040Destino/Backups\\040desde\\040Ubuntu /mnt/copias_seguridad cifs credentials=/etc/samba/credenciales_backup,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm 0 0
 
 ### 2. Credenciales SMB
