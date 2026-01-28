@@ -54,7 +54,7 @@ mount | grep copias_seguridad  # ✅ Debe mostrar CIFS montado
 df -h /mnt/copias_seguridad    # Ver espacio Windows
 ```
 
-## Instalación
+## 👨🏻‍💻 Instalación
 ```bash
 # Clonar repositorio
 git clone https://github.com/papgar92/Backup-Ubuntu-Server-Windows-server
