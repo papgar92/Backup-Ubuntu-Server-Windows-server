@@ -78,7 +78,7 @@ Añadir al final:
 ./backup.sh
 
 # Ver logs en vivo
-tail -f /home/xrdpuser/log_copia_sensdesk.txt
+tail -f /home/xrdpuser/log_copia_seguridad.txt
 
 # Verificar destino Windows
 ls -la /mnt/copias_seguridad/
