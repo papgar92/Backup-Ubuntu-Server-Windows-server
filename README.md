@@ -22,39 +22,7 @@ Script **Bash listo para produccion** :
 
 * **Origen:** Ubuntu 22.04 LTS (o superior).
 * **Destino:** Windows Server o carpeta compartida en red (SMB).
-* **Dependencias:**
-    ```bash
-    sudo apt update
-    sudo apt install -y cifs-utils rsync
-    ```
 
-## 🚀 Instalación y Configuración
-
-### 1. Configuración de Credenciales
-Creamos un archivo de credenciales protegido:
-
-```bash
-sudo nano /etc/samba/credenciales_sensdesk
-````
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Pre-requisitos (CIFS Obligatorio)
 
 ### 1. Instalar y configurar Cliente CIFS
 ```bash
@@ -78,24 +46,43 @@ sudo nano /etc/samba/credenciales_backup  # Edita con tus datos REALES
 sudo chmod 600 /etc/samba/credenciales_backup
 ```
 
-
-
-
-
-
+### 4. Probar montaje
+```bash
 sudo mkdir -p /mnt/copias_seguridad
 sudo mount -a
-mount | grep copias_seguridad  # Muestra CIFS montado
-df -h /mnt/copias_seguridad    # Ver espacio en Windows
+mount | grep copias_seguridad  # ✅ Debe mostrar CIFS montado
+df -h /mnt/copias_seguridad    # Ver espacio Windows
+```
 
-# Clonar repo y hacer ejecutable
+## Instalación
+```bash
+# Clonar repositorio
 git clone https://github.com/papgar92/Backup-Ubuntu-Server-Windows-server
 cd Backup-Ubuntu-Server-Windows-server
 
-chmod +x backup.sh
+# Permisos ejecucion
 
+chmod +x script_backup.sh
+```
 
+### Configurar cron
+```bash
 sudo crontab -e
+```
+Añadir al final: 
+0 2 * * * /home/usuario/Backup-Ubuntu-Server-Windows-server/backup.sh >> /home/xrdpuser/log_copia_seguridad.txt 2>&1
+
+### Probar script
+```bash
+# Test manual
+./backup.sh
+
+# Ver logs en vivo
+tail -f /home/xrdpuser/log_copia_sensdesk.txt
+
+# Verificar destino Windows
+ls -la /mnt/copias_seguridad/
+```
 
 
 
