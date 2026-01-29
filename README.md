@@ -70,7 +70,7 @@ chmod +x script_backup.sh
 sudo crontab -e
 ```
 Añadir al final: 
-0 2 * * * /home/usuario/Backup-Ubuntu-Server-Windows-server/backup.sh >> /home/xrdpuser/log_copia_seguridad.txt 2>&1
+0 2 * * * /home/usuario/Backup-Ubuntu-Server-Windows-server/backup.sh >> /home/usuario/log_copia_seguridad.txt 2>&1
 
 ### Probar script
 ```bash
@@ -78,7 +78,7 @@ Añadir al final:
 ./backup.sh
 
 # Ver logs en vivo
-tail -f /home/xrdpuser/log_copia_seguridad.txt
+tail -f /home/usuario/log_copia_seguridad.txt
 
 # Verificar destino Windows
 ls -la /mnt/copias_seguridad/
